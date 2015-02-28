@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>GCodeTimeLapse.js - Demo</title>
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/gcodetimelapse.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/Blob.js"></script>
+        <script type="text/javascript" src="js/FileSaver.js"></script>
+        <script type="text/javascript" src="js/gcodetimelapse/gcodetimelapse.js"></script>
+    </head>
+    <body>
+        <div id="main">
+            <h1 id="title">GCodeTimeLapse.js - Demo</h1>
+            <div id="gcodetimelapse">
+                
+                <div id="docBox" class="box">
+                    <p>Blablabla...informations...blablabla...</p>
+                </div>
+
+                <div id="optionBox" class="box">
+                    <div id="triggerCodeOption">
+                        <label for="triggerCode">trigger code</label>
+                        <input id="triggerCode" name="triggerCode" type="text" value="M108" class="editable" />
+                    </div>
+                    <div id="options">
+                        <div id="beforeOptions">
+                            <strong>trigger before</strong>
+                            <label for="before_layerChange">
+                                <input id="before_layerChange" name="before_layerChange" type="checkbox" checked="checked" /> 
+                                <span>layerChange</span>
+                            </label>
+                            <label for="before_firstMove">
+                                <input id="before_firstMove" name="before_firstMove" type="checkbox" /> 
+                                <span>firstMove</span>
+                            </label>
+                            <label for="before_printEnd">
+                                <input id="before_printEnd" name="before_printEnd" type="checkbox" checked="checked" /> 
+                                <span>printEnd</span>
+                            </label>
+                            <label for="before_minX">
+                                <input id="before_minX" name="before_minX" type="checkbox" /> 
+                                <span>minX</span>
+                            </label>
+                            <label for="before_maxX">
+                                <input id="before_maxX" name="before_maxX" type="checkbox" /> 
+                                <span>maxX</span>
+                            </label>
+                            <label for="before_minY">
+                                <input id="before_minY" name="before_minY" type="checkbox" /> 
+                                <span>minY</span>
+                            </label>
+                            <label for="before_maxY">
+                                <input id="before_maxY" name="before_maxY" type="checkbox" /> 
+                                <span>maxY</span>
+                            </label>
+                        </div>
+                        <div id="afterOptions">
+                            <strong>trigger after</strong>
+                            <label for="after_layerChange">
+                                <input id="after_layerChange" name="after_layerChange" type="checkbox" /> 
+                                <span>layerChange</span>
+                            </label>
+                            <label for="after_firstMove">
+                                <input id="after_firstMove" name="after_firstMove" type="checkbox" /> 
+                                <span>firstMove</span>
+                            </label>
+                            <label for="after_printEnd">
+                                <input id="after_printEnd" name="after_printEnd" type="checkbox" /> 
+                                <span>printEnd</span>
+                            </label>
+                            <label for="after_minX">
+                                <input id="after_minX" name="after_minX" type="checkbox" /> 
+                                <span>minX</span>
+                            </label>
+                            <label for="after_maxX">
+                                <input id="after_maxX" name="after_maxX" type="checkbox" /> 
+                                <span>maxX</span>
+                            </label>
+                            <label for="after_minY">
+                                <input id="after_minY" name="after_minY" type="checkbox" /> 
+                                <span>minY</span>
+                            </label>
+                            <label for="after_maxY">
+                                <input id="after_maxY" name="after_maxY" type="checkbox" /> 
+                                <span>maxY</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="infoBox" class="box clearfix">
+                    <span class="info dynamic">linesCount = <span id="linesCount">n/a</span></span>
+                    <span class="info dynamic">shotsCount = <span id="shotsCount">n/a</span></span>
+                    <span class="info dynamic">layersCount = <span id="layersCount">n/a</span></span>
+                    <span class="info dynamic">layerHeight = <span id="layerHeight">n/a</span></span>
+                    <span class="info dynamic">firstLayerHeight = <span id="firstLayerHeight">n/a</span></span>
+                    <span class="info dynamic">vaseMode = <span id="vaseMode">n/a</span></span>
+                </div>
+                
+                <div id="inputBox" class="box">
+                    <label id="inputLabel" for="input">input</label>
+                    <span class="info"><span id="inputFileName" class="editable" contenteditable="true">n/a</span></span>
+                    <input type="file" accept=".gcode" id="inputFile" name="inputFile" class="freez" />
+                    <button id="openFileButton" class="__file_support freez">open file</button>
+                    <button id="parseButton" class="freez">parse</button>
+                    <button id="abortButton">abort</button>
+                    <textarea id="input" name="input" spellcheck="false" class="freez"></textarea>
+                </div>
+                
+                <div id="outputBox" class="box">
+                    <label id="outputLabel" for="output">output</label>
+                    <span class="info"><span id="outputFileName" class="editable" contenteditable="true">n/a</span></span>
+                    <button id="saveFileButton">save file</button>
+                    <textarea id="output" name="output" spellcheck="false" class="freez"></textarea>
+                </div>
+
+            </div>
+        </div>
+        <script type="text/javascript" src="js/main.js"></script>
+        <a href="https://github.com/lautr3k/GCodeTimeLapse.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    </body>
+</html>
