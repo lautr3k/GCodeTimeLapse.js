@@ -54,6 +54,9 @@ SOFTWARE.
             maxY       : false
         };
 
+        this.pauseBeforeTrigger = 100;
+        this.pauseAfterTrigger  = 100;
+
         // shots count
         this.shotsCount = 0;
         
@@ -86,10 +89,22 @@ SOFTWARE.
     // ------------------------------------------------------------------------
 
     GCodeTimeLapse.prototype._addAction = function(where, action) {
+        // pause
+        if (this.pauseBeforeTrigger > 0) {
+            // add the line to output
+            this.outputGCode += 'G4 P'+this.pauseBeforeTrigger + '\n';
+        }
+
         // append M code to output
         this.outputGCode += this.mcode+'; action '+where+' '+action+'\n';
         // increment counter
         this.shotsCount++;
+
+        // pause
+        if (this.pauseAfterTrigger > 0) {
+            // add the line to output
+            this.outputGCode += 'G4 P'+this.pauseAfterTrigger + '\n';
+        }
     }
 
     // on get line

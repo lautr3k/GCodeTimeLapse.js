@@ -278,3 +278,8 @@ $('#parseButton').on('click', parse);
 $('#abortButton').on('click', abort);
 
 $('#options input').on('change', setOption);
+
+$('#pauseBeforeTrigger, #pauseAfterTrigger').on('change', function() {
+    gctl.pauseBeforeTrigger = parseInt($('#pauseBeforeTrigger').val());
+    gctl.pauseAfterTrigger  = parseInt($('#pauseAfterTrigger').val());
+});
